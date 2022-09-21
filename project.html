@@ -27,12 +27,79 @@
         </select>
     </div>
     <button id="start">start</button>
-
+    <button id="calculate" disabled>Calculate</button>
+    <div class="problems">
+        
+    </div>
 
     <script>
   
       var startElement = document.getElementById('start');
+      var problemsElement = document.getElementsByClassName('problems')[0];
+      var calculateElement=document.getElementById('calculate');
 
+       function generatRandomnum(max){
+         return parseInt(Math.random()*max)
+      }
+
+      function textTosymbol(text){
+        switch(text){
+            case 'add':
+                return '+'
+                break;
+            case 'sub':
+                return '-'
+                break;
+            case 'multiply':
+                return '*'
+                break;
+            default:
+                return '/'
+                break;            
+        }
+      }
+      function resetproblems(){
+        problemsElement.innerHTML="";
+      }
+
+      function enableCalculate(){
+        calculateElement.removeAttribute('disabled');
+      }
+
+      function updateProblem(number1 , number2, opration){
+            //create problem section
+            let problemElement = document.createElement('div');
+            problemElement.setAttribute('class','problem');
+            //  create h3 for number1 
+            let number1Element = document.createElement('h3');
+           
+            // update value of number1
+            number1Element.innerText=number1;
+            //  create h3 for opration
+            let oprationElements=document.createElement('h3');
+            oprationElements.innerText=textTosymbol(opration);
+            // update symbol of opration 
+            
+            //  create h3 for number2
+            let number2Element = document.createElement('h3');
+            // update value of number2
+            number2Element.innerText=number2;
+            // create  hr
+            // create input
+            let inputElement=document.createElement('input');
+            // update input class name
+            inputElement.setAttribute('class','answer');
+           
+            // update input type text
+            inputElement.setAttribute('type','text');
+            // append h3, hr,input inside problem 
+            problemElement.append(number1Element)
+            problemElement.append(oprationElements)
+            problemElement.append(number2Element)
+            problemElement.append(inputElement)
+        // append problem inside problems
+        problemsElement.append(problemElement);
+      }
       var stage1Opration = function(){
             var oprationElement = document.getElementById('opration'),
 
@@ -40,8 +107,22 @@
 
                 opration = oprationElement.value,
 
-                range = rangeElement.value;
+                range = parseInt(rangeElement.value),
 
+                randomNumber1 , randomNumber2;  
+           
+                // create 8 problem
+             if(opration !=='divide'){
+                resetproblems();
+                for(i=1; i<=16; i++){
+                  randomNumber1 = generatRandomnum(range);
+                  randomNumber2 = generatRandomnum(range);
+                  
+                  updateProblem(randomNumber1,randomNumber2,opration);
+                }
+                enableCalculate();
+
+             }
         
       }
       startElement.addEventListener("click",stage1Opration)
