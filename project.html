@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div>
+        <select name="" id="opration">
+            <option value="add">Addition</option>
+            <option value="sub">Subtraction</option>
+            <option value="multiply">Multiplication</option>
+            <option value="divide">Division</option>
+        </select>
+    </div>
+    <div>
+        <select name="" id="range">
+            <option value="9">0 to 9</option>
+            <option value="19">0 to 19</option>
+            <option value="29">0 to 29</option>
+            <option value="39">0 to 39</option>
+            <option value="49">0 to 49</option>
+            <option value="99">0 to 99</option>
+        </select>
+    </div>
+    <button id="start">start</button>
+
+
+    <script>
+  
+      var startElement = document.getElementById('start');
+
+      var stage1Opration = function(){
+            var oprationElement = document.getElementById('opration'),
+
+                rangeElement = document.getElementById('range'),
+
+                opration = oprationElement.value,
+
+                range = rangeElement.value;
+
+        
+      }
+      startElement.addEventListener("click",stage1Opration)
+
+    </script>
+</body>
+</html>
