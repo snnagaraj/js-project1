@@ -28,7 +28,7 @@
       <option value="99">0 to 99</option>
     </select>
   </div>
-  <button id="start">start</button>      
+  <button id="start">start</button>
   <button id="calculate" disabled>Calculate</button>
   <div class="problems">
 
@@ -80,6 +80,7 @@
       //  create h3 for opration
       let oprationElements = document.createElement('h3');
       oprationElements.innerText = textTosymbol(opration);
+      oprationElements.setAttribute('class','symbol');
       // update symbol of opration 
 
       //  create h3 for number2
@@ -127,13 +128,34 @@
       }
 
     }
-    function stage2Opration(){
-        var problemEle=document.getElementsByClassName('problem'),
-        problemElement;
+    function stage2Opration() {
+      var problemEle = document.getElementsByClassName('problem'),
+        problemsEle, oprationEle, oprationType, number1Ele, number2Ele,number1value,number2value,expectAnswer;
 
-        for(i=0;i<problemEle.length;i++){
-          problemElement=problemEle[i];
+      for (i = 0; i < problemEle.length; i++) {
+        problemElement = problemEle[i];
+
+        oprationEle = problemElement.getElementsByClassName('symbol')[0];
+        
+        oprationType = oprationEle.innerText;
+        
+        number1Ele=problemElement.getElementsByClassName('number1')[0];
+        number1value=parseInt(number1Ele.innerText);
+
+        number2Ele=problemElement.getElementsByClassName('number2')[0];
+        number2value=parseInt(number2Ele.innerText);
+
+        if(oprationType == '+'){
+        expectAnswer=number1value+number2value;
+        }else if(oprationType == '-'){
+          expectAnswer=number1value-number2value;
+        }else if(oprationType == '*'){
+          expectAnswer=number1value*number2value;
+        }else{
+          expectAnswer=number1value/number2value;
         }
+        console.log(expectAnswer);
+      }
     }
     startElement.addEventListener("click", stage1Opration);
     calculateElement.addEventListener("click", stage2Opration);
